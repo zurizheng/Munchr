@@ -5,6 +5,7 @@ import SignupForm from './_auth/forms/SignupForm'
 import { Home } from './_root/pages'
 import AuthLayout from './_auth/AuthLayout'
 import RootLayout from './_root/RootLayout'
+import { Toaster, toast } from 'sonner'
 
 const App = () => {
   return (
@@ -22,6 +23,8 @@ const App = () => {
                 <Route index element={<Home />} />
             </Route>
         </Routes>
+
+        <Toaster richColors position='top-center'/>
     </main>
   )
 }

@@ -1,7 +1,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod"
 
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 
 import { useForm } from "react-hook-form"
@@ -10,6 +10,8 @@ import { SignupValidation } from "@/lib/validation"
 import { z } from "zod"
 import Loader from "@/components/shared/Loader"
 import { Link } from "react-router-dom"
+import { createUserAccount } from "@/lib/appwrite/api"
+import { toast } from "sonner"
 
 
 
@@ -29,7 +31,13 @@ const SignupForm = () => {
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof SignupValidation>) {
     // create the user
+    const newUser = await createUserAccount(values);
     
+    if(!newUser) {
+      return toast.error('Sign Up Failed. Please try again');
+    }
+
+    // const session = await signInAccount();
   }
 
   return (
